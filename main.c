@@ -1,12 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 #define BOARD_SIZE 11
 #define HALF_BOARD_SIZE 5
 
 const int board_len = BOARD_SIZE * BOARD_SIZE;
 
+// helper function
+int vec_to_pos(int x, int y) {
+	return x * BOARD_SIZE + y;
+}
+
+// not greatly optimized, might change later
 void init_board(char* board) {
 	memset(board, '-', board_len);
 
@@ -45,12 +52,11 @@ void init_board(char* board) {
 	board[BOARD_SIZE * 4] = 'O';
 }
 
+// helper function
 void print_board(char* board) {
-
 	for (int y = 0; y < BOARD_SIZE; y++) {
 		for (int x = 0; x < BOARD_SIZE; x++) {
 			printf(" %c", board[x + y * BOARD_SIZE]);
-
 			if ((x % BOARD_SIZE) == BOARD_SIZE - 1) {
 				printf("\n");
 			}
@@ -58,11 +64,22 @@ void print_board(char* board) {
 	}
 }
 
+void get_input(char* i) {
+	fgets(i, 80, stdin);
+}
+
 int main(void) {
 	char board[board_len];
+	char input[80];
+
 	init_board(board);
 
-	print_board(board);
+	bool loop = true;
+	while (loop) {
+
+	}
+
+	//print_board(board);
 
 	return 0;
 }
