@@ -1,2 +1,4 @@
 hnefatafl
 *.o
+*.exe
+*.pdb

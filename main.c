@@ -9,47 +9,20 @@
 const int board_len = BOARD_SIZE * BOARD_SIZE;
 
 // helper function
-int vec_to_pos(int x, int y) {
+inline int vec_to_pos(int x, int y) {
 	return x * BOARD_SIZE + y;
 }
 
 // not greatly optimized, might change later
-void init_board(char* board) {
-	memset(board, '-', board_len);
+void init_board(
+	char* board,
+	int* white_pieces,
+	int* black_pieces,
+	int* king_piece
+) {
+	memset(board, '.', board_len);
 
-	// KING
-	board[BOARD_SIZE * HALF_BOARD_SIZE + HALF_BOARD_SIZE] = 'K';
-
-	// MIDDLE ROWS
-	board[BOARD_SIZE * 4 + HALF_BOARD_SIZE] = 'x';
-	board[BOARD_SIZE * HALF_BOARD_SIZE + 4] = 'x';
-	board[BOARD_SIZE * HALF_BOARD_SIZE + 6] = 'x';
-	board[BOARD_SIZE * 6 + HALF_BOARD_SIZE] = 'x';
-
-	board[BOARD_SIZE * 3 + HALF_BOARD_SIZE] = 'x';
-	board[BOARD_SIZE * 4 + 4] = 'x';
-	board[BOARD_SIZE * 4 + 6] = 'x';
-	board[BOARD_SIZE * HALF_BOARD_SIZE + 3] = 'x';
-	board[BOARD_SIZE * HALF_BOARD_SIZE + 7] = 'x';
-	board[BOARD_SIZE * HALF_BOARD_SIZE + 15] = 'x';
-	board[BOARD_SIZE * HALF_BOARD_SIZE + 17] = 'x';
-	board[BOARD_SIZE * HALF_BOARD_SIZE + BOARD_SIZE + 16] = 'x';
-
-	// top row
-	for (int i = 0; i < 5; i++) board[i + 3] = 'O';
-	board[BOARD_SIZE * 1 + HALF_BOARD_SIZE] = 'O';
-
-	// bottom row
-	for (int i = 0; i < 5; i++) board[(board_len - BOARD_SIZE) + i + 3] = 'O';
-	board[board_len - BOARD_SIZE * 2 + HALF_BOARD_SIZE] = 'O';
-
-	// left row
-	for (int i = 0; i < 5; i++) board[BOARD_SIZE * (i + 3)] = 'O';
-	board[BOARD_SIZE * 5 + 1] = 'O';
-
-	// right row
-	for (int i = 0; i < 5; i++) board[BOARD_SIZE * (i + HALF_BOARD_SIZE - 1) - 1] = 'O';
-	board[BOARD_SIZE * 4] = 'O';
+	king_piece[0] = vec_to_pos(HALF_BOARD_SIZE, HALF_BOARD_SIZE);
 }
 
 // helper function
@@ -70,16 +43,17 @@ void get_input(char* i) {
 
 int main(void) {
 	char board[board_len];
+	
+	int white_pieces[24];
+	int black_pieces[11];
+	int king_piece[1];
+
 	char input[80];
 
-	init_board(board);
+	init_board(board, white_pieces, black_pieces, king_piece);
+	print_board(board);
 
 	bool loop = true;
-	while (loop) {
-
-	}
-
-	//print_board(board);
 
 	return 0;
 }
